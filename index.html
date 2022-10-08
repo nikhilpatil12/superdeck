@@ -37,7 +37,15 @@
             // Initialize Firebase
             const app = initializeApp(firebaseConfig);
             const analytics = getAnalytics(app);
-          </script>
+            // Initialize Cloud Firestore and get a reference to the service
+            const db = firebase.firestore();
+
+            db.collection("boot-videos").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                console.log(`${doc.id} => ${doc.data()}`);
+            });
+        });
+        </script>
     </head>
 
     <body>
